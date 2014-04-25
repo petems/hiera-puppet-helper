@@ -3,7 +3,6 @@ require 'hiera-puppet-helper/puppet'
 require 'hiera-puppet-helper/rspec'
 require 'rspec-puppet/support'
 require 'hiera'
-require 'puppet/indirector/data_binding/hiera'
 
 def hiera_stub
   config = Hiera::Config.load(hiera_config)
@@ -15,7 +14,13 @@ RSpec.configure do |c|
   c.mock_framework = :rspec
 
   c.before(:each) do
-    Puppet::DataBinding::Hiera.stub(:hiera => hiera_stub)
+    begin
+      require 'puppet/indirector/hiera'
+      Puppet::DataBinding::Hiera
+    rescue Exception => e
+      require 'puppet/indirector/data_binding/hiera'
+      Puppet::DataBinding::Hiera
+    end.stub(:hiera => hiera_stub)
     # Use this to debug
     #Puppet::Util::Log.level = :debug
     #Puppet::Util::Log.newdestination(:console)
