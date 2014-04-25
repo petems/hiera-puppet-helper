@@ -1,7 +1,7 @@
 require 'hiera-puppet-helper/version'
 require 'hiera-puppet-helper/puppet'
 require 'hiera-puppet-helper/rspec'
-
+require 'rspec-puppet/support'
 require 'hiera'
 require 'puppet/indirector/data_binding/hiera'
 
@@ -21,5 +21,13 @@ RSpec.configure do |c|
     #Puppet::Util::Log.newdestination(:console)
   end
 
+end
+
+# Remove the caching of the catalog as otherwise changes in hiera data don't get
+# reflected between different tests
+module RSpec::Puppet::Support
+  def build_catalog(*args)
+    self.build_catalog_without_cache(*args)
+  end
 end
 
