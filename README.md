@@ -1,6 +1,6 @@
 # Hiera::Puppet::Helper
 
-[![Build Status](https://travis-ci.org/mthibaut/hiera-puppet-helper.png?branch=master)](https://travis-ci.org/mthibaut/hiera-puppet-helper)
+[![Build Status](https://travis-ci.org/bobtfish/hiera-puppet-helper.png?branch=master)](https://travis-ci.org/bobtfish/hiera-puppet-helper)
 
 Hiera fixtures for puppet-rspec tests.
 
