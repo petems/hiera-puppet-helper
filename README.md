@@ -144,13 +144,13 @@ Right now, the Gem does not support multiple `let(:hiera_data)` for one class:
 
 ```
   describe "in-line hiera_data test" do
-    let(:hiera_data) { { :bar_message => "baz" } }
-    it { should contain_notify("bar").with_message("baz") }
+    let(:hiera_data) { { :bar_message => "a" } }
+    it { should contain_notify("bar").with_message("a") }
   end
 
   describe "in-line hiera_data test in one file" do
-    let(:hiera_data) { { :bar_message => "111" } }
-    it { should contain_notify("bar").with_message("111") }
+    let(:hiera_data) { { :bar_message => "b" } }
+    it { should contain_notify("bar").with_message("b") }
   end
 ```
 
