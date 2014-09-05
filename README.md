@@ -137,3 +137,21 @@ demonstrates the use of a shared context.
 
       it { should contain_notify("foo").with_message("bar") }
     end
+
+### Known issues
+
+Right now, the Gem does not support multiple `let(:hiera_data)` for one class:
+
+```
+  describe "in-line hiera_data test" do
+    let(:hiera_data) { { :bar_message => "baz" } }
+    it { should contain_notify("bar").with_message("baz") }
+  end
+
+  describe "in-line hiera_data test in one file" do
+    let(:hiera_data) { { :bar_message => "111" } }
+    it { should contain_notify("bar").with_message("111") }
+  end
+```
+
+Will always fail, as the :hiera_data doesnt get cleared out.
